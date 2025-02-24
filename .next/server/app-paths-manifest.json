@@ -1,0 +1,8 @@
+{
+  "/ocs/page": "app/ocs/page.js",
+  "/keynotes/page": "app/keynotes/page.js",
+  "/speeches/page": "app/speeches/page.js",
+  "/ocs/[slug]/page": "app/ocs/[slug]/page.js",
+  "/quotes/page": "app/quotes/page.js",
+  "/_not-found/page": "app/_not-found/page.js"
+}

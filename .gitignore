@@ -1,0 +1,10 @@
+# Existing entries...
+
+# Local env files
+.env*.local
+
+# Vercel
+.vercel
+
+# Node Modules
+node_modules
