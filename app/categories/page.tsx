@@ -1,13 +1,40 @@
 import Link from "next/link"
-import { getCategories } from "../../utils/ghost"
+import { getCategories, getPostsByCategory } from "../../utils/ghost"
 
 export const dynamic = "force-dynamic"
 
+type Category = {
+  name: string
+  slug: string
+  count: number
+}
+
+type Post = {
+  title: string
+  slug: string
+  tags: { name: string; slug: string }[]
+}
+
 export default async function CategoriesPage() {
   try {
-    const categories = await getCategories()
+    let categories: Category[] = await getCategories()
 
-    if (categories.length === 0) {
+    // Fetch posts for each category and filter out those containing the "krisyotam-now" tag
+    const filteredCategories: Category[] = []
+
+    for (const category of categories) {
+      const posts: Post[] = await getPostsByCategory(category.slug)
+
+      const hasExcludedTag = posts.some((post) =>
+        post.tags.some((tag) => tag.slug === "krisyotam-now")
+      )
+
+      if (!hasExcludedTag) {
+        filteredCategories.push(category)
+      }
+    }
+
+    if (filteredCategories.length === 0) {
       return (
         <div className="relative min-h-screen bg-background text-foreground">
           <div className="max-w-4xl mx-auto p-8 md:p-16 lg:p-24">
@@ -20,23 +47,11 @@ export default async function CategoriesPage() {
     return (
       <div className="relative min-h-screen bg-background text-foreground">
         <div className="max-w-4xl mx-auto p-8 md:p-16 lg:p-24">
-          <header className="mb-16">
-            <h1 className="text-4xl font-semibold mb-3 text-foreground">Categories</h1>
-            <p className="text-muted-foreground">
-              {categories.length} {categories.length === 1 ? "category" : "categories"}
-            </p>
-          </header>
           <main>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-4 px-2 font-semibold text-foreground">Category</th>
-                    <th className="text-right py-4 px-2 font-semibold text-foreground">Posts</th>
-                  </tr>
-                </thead>
                 <tbody>
-                  {categories.map((category) => (
+                  {filteredCategories.map((category) => (
                     <tr key={category.slug} className="border-b border-border hover:bg-secondary/50 transition-colors">
                       <td className="py-4 px-2">
                         <Link href={`/category/${category.slug}`} className="text-foreground hover:underline">
@@ -62,4 +77,3 @@ export default async function CategoriesPage() {
     )
   }
 }
-
