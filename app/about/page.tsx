@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import aboutMeData from "../../data/about-me.json"
@@ -11,9 +10,10 @@ import personalPhilosophyData from "../../data/personal-philosophy.json"
 import coreValuesData from "../../data/core-values.json"
 import recommendedBlogsData from "../../data/recommended-blogs.json"
 import mySitesData from "../../data/my-sites.json"
-import { getNowPosts } from "../../utils/ghost"
-import { Button } from "@/components/ui/button";
-
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Card, CardContent } from "@/components/ui/card"
 
 export const dynamic = "force-dynamic"
 
@@ -58,10 +58,10 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
 
 export default function AboutPage() {
   const [openSections, setOpenSections] = useState<number[]>([0])
-  const [blogs, setBlogs] = useState<Array<{ title: string; tags: string[]; url: string }>>([])
   const [sections, setSections] = useState<Array<{ title: string; content: string | React.ReactNode }>>([])
-  const [nowPosts, setNowPosts] = useState<Array<{ title: string; published_at: string; slug: string }>>([])
   const [age, setAge] = useState<string>("")
+  const [selectedCategory, setSelectedCategory] = useState<string>("All")
+  const [selectedBlog, setSelectedBlog] = useState<any>(null)
 
   const updateAge = useCallback(() => {
     const birthDate = new Date("2004-08-05T18:31:00")
@@ -80,9 +80,6 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchData = async () => {
       if (typeof window !== "undefined") {
-        setBlogs(recommendedBlogsData.blogs)
-        const fetchedNowPosts = await getNowPosts()
-        setNowPosts(fetchedNowPosts)
         setSections([
           {
             title: "About Me",
@@ -142,38 +139,6 @@ export default function AboutPage() {
             ),
           },
           {
-            title: "Now",
-            content: (
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-secondary">
-                      <th className="px-4 py-2 text-left text-foreground">Name</th>
-                      <th className="px-4 py-2 text-left text-foreground">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {nowPosts.map((post, index) => (
-                      <tr
-                        key={index}
-                        className="border-t border-border hover:bg-secondary/50 transition-colors duration-200"
-                      >
-                        <td className="px-4 py-2 text-foreground">
-                          <Link href={`/post/${post.slug}`} className="hover:underline">
-                            {post.title}
-                          </Link>
-                        </td>
-                        <td className="px-4 py-2 text-muted-foreground">
-                          {new Date(post.published_at).toLocaleDateString()}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ),
-          },
-          {
             title: "My Sites",
             content: (
               <div className="overflow-x-auto">
@@ -208,11 +173,18 @@ export default function AboutPage() {
     }
 
     fetchData()
-  }, [nowPosts]) // Added nowPosts to the dependency array
+  }, [age])
 
   const toggleSection = (index: number) => {
     setOpenSections((current) => (current.includes(index) ? current.filter((i) => i !== index) : [...current, index]))
   }
+
+  const categories = ["All", ...Array.from(new Set(recommendedBlogsData.blogs.map((blog) => blog.category)))]
+
+  const filteredBlogs =
+    selectedCategory === "All"
+      ? recommendedBlogsData.blogs
+      : recommendedBlogsData.blogs.filter((blog) => blog.category === selectedCategory)
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
@@ -228,21 +200,50 @@ export default function AboutPage() {
             />
           ))}
         </div>
-        <div className="flex justify-center my-6">
-        <Link href="/wishlist" passHref>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-            View My Wishlist
-          </Button>
-        </Link>
-      </div>
-
+        <div className="flex justify-center my-6 space-x-4">
+  <Link href="/wishlist" passHref>
+    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
+      View My Wishlist
+    </Button>
+  </Link>
+  <Link href="/research" passHref>
+    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
+      View My Research
+    </Button>
+  </Link>
+  <Link href="/explore" passHref>
+    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
+      Explore More
+    </Button>
+  </Link>
+</div>
 
         <div>
-        <h3 className="text-xl font-medium mb-4 text-foreground">Recommended Blogs</h3>
+        <h3 className="text-lg font-semibold mb-4 text-foreground">Interesting People</h3>
+        <p className="text-sm text-foreground pb-4">
+          A curated list of writers, poets, artists, socialites, entrepreneurs, chairmen, politicians, academics, scientists, innovators, philosophers, educators, engineers, inventors, historians, activists, and more. People you should get to know.
+        </p>
+
+          <div className="flex flex-wrap gap-2 mb-6">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "secondary"}
+                className={`transition-colors hover:bg-primary hover:text-primary-foreground ${
+                  selectedCategory === category
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <tbody>
-                {blogs.map((blog, index) => (
+                {filteredBlogs.map((blog, index) => (
                   <tr
                     key={index}
                     className="border-t border-border hover:bg-secondary/50 transition-colors duration-200"
@@ -262,6 +263,76 @@ export default function AboutPage() {
                         </div>
                       </Link>
                     </td>
+                    <td className="py-4 pl-4 text-right">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" onClick={() => setSelectedBlog(blog)}>
+                            More Info
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[700px]">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl font-bold">{selectedBlog?.title}</DialogTitle>
+                          </DialogHeader>
+                          <ScrollArea className="max-h-[80vh] overflow-y-auto pr-4">
+                            <div className="space-y-6">
+                              <Card>
+                                <CardContent className="p-4">
+                                  <h3 className="text-lg font-semibold mb-2">Description</h3>
+                                  <p>{selectedBlog?.description}</p>
+                                </CardContent>
+                              </Card>
+
+                              <Card>
+                                <CardContent className="p-4">
+                                  <h3 className="text-lg font-semibold mb-2">Author Details</h3>
+                                  <p>
+                                    <strong>Name:</strong> {selectedBlog?.author.name}
+                                  </p>
+                                  <p>
+                                    <strong>Position:</strong> {selectedBlog?.author.position}
+                                  </p>
+                                  <div className="mt-2">
+                                    <strong>Achievements:</strong>
+                                    <ul className="list-disc list-inside">
+                                      {selectedBlog?.author.achievements.map((achievement: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined, index: React.Key | null | undefined) => (
+                                        <li key={index}>{achievement}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                </CardContent>
+                              </Card>
+
+                              <Card>
+                                <CardContent className="p-4">
+                                  <h3 className="text-lg font-semibold mb-2">Blog Highlights</h3>
+                                  <ul className="list-disc list-inside">
+                                    {selectedBlog?.blogHighlights.map((highlight: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined, index: React.Key | null | undefined) => (
+                                      <li key={index}>{highlight}</li>
+                                    ))}
+                                  </ul>
+                                </CardContent>
+                              </Card>
+
+                              <Card>
+                                <CardContent className="p-4">
+                                  <h3 className="text-lg font-semibold mb-2">Reader Level</h3>
+                                  <p>{selectedBlog?.readerLevel}</p>
+                                </CardContent>
+                              </Card>
+
+                              <div className="flex justify-center">
+                                <Button asChild>
+                                  <Link href={selectedBlog?.url || "#"} target="_blank" rel="noopener noreferrer">
+                                    Visit Blog
+                                  </Link>
+                                </Button>
+                              </div>
+                            </div>
+                          </ScrollArea>
+                        </DialogContent>
+                      </Dialog>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -272,5 +343,4 @@ export default function AboutPage() {
     </div>
   )
 }
-
 

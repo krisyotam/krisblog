@@ -3,27 +3,114 @@
     {
       "title": "Terrance Tao",
       "tags": ["Expository Papers", "Research Mathematics", "Open Problems"],
-      "url": "https://www.theminimalists.com/"
+      "url": "https://terrytao.wordpress.com/",
+      "description": "Terrance Tao's blog covers a wide range of mathematical topics, from expository papers to cutting-edge research and open problems in mathematics.",
+      "category": "Mathematics",
+      "author": {
+        "name": "Terrance Tao",
+        "position": "Professor of Mathematics at UCLA",
+        "achievements": [
+          "Fields Medal (2006)",
+          "Breakthrough Prize in Mathematics (2014)",
+          "MacArthur Fellowship (2006)"
+        ],
+        "researchAreas": ["Harmonic Analysis", "Partial Differential Equations", "Combinatorics", "Number Theory"]
+      },
+      "blogHighlights": [
+        "In-depth discussions on mathematical proofs",
+        "Explanations of complex mathematical concepts",
+        "Updates on recent developments in mathematics"
+      ],
+      "readerLevel": "Advanced undergraduate to professional mathematicians"
     },
     {
       "title": "Matt Might",
       "tags": ["Computer Science", "Machine Learning", "Biomedical Sciences"],
-      "url": "https://matt.might.net/#blog"
+      "url": "https://matt.might.net/#blog",
+      "description": "Matt Might's blog explores various aspects of computer science, machine learning, and their applications in biomedical sciences.",
+      "category": "Computer Science",
+      "author": {
+        "name": "Matt Might",
+        "position": "Professor of Internal Medicine and Computer Science at the University of Alabama at Birmingham",
+        "achievements": ["CAREER Award from the National Science Foundation", "Young Faculty Award from DARPA"],
+        "researchAreas": ["Programming Languages", "Static Analysis", "Precision Medicine", "Rare Disease"]
+      },
+      "blogHighlights": [
+        "Practical advice for graduate students and researchers",
+        "Insights into the intersection of computer science and medicine",
+        "Explanations of complex computer science concepts"
+      ],
+      "readerLevel": "Computer science students, researchers, and professionals"
     },
     {
       "title": "The Classical Classroom",
       "tags": ["Web Development", "Architecture", "Technology"],
-      "url": "https://k12blog.hillsdale.edu/"
+      "url": "https://k12blog.hillsdale.edu/",
+      "description": "The Classical Classroom blog discusses topics related to web development, architecture, and technology in the context of classical education.",
+      "category": "Education",
+      "author": {
+        "name": "Hillsdale College K-12 Education",
+        "position": "Educational Institution",
+        "achievements": [
+          "Recognized leader in classical education",
+          "Developed comprehensive K-12 classical curriculum"
+        ],
+        "focus": ["Classical Education Principles", "Curriculum Development", "Teacher Training"]
+      },
+      "blogHighlights": [
+        "Insights into integrating technology in classical education",
+        "Discussions on architectural principles in educational settings",
+        "Practical tips for educators in classical schools"
+      ],
+      "readerLevel": "Educators, school administrators, and parents interested in classical education"
     },
     {
       "title": "Renewing Classical Education",
       "tags": ["Classical Education", "Technology", "Society"],
-      "url": "https://christopherperrin.substack.com/"
+      "url": "https://christopherperrin.substack.com/",
+      "description": "This blog focuses on renewing classical education principles and their intersection with modern technology and society.",
+      "category": "Education",
+      "author": {
+        "name": "Christopher Perrin",
+        "position": "Publisher and CEO of Classical Academic Press",
+        "achievements": [
+          "Author of multiple books on classical education",
+          "Consultant and speaker on classical education"
+        ],
+        "expertise": ["Classical Education Philosophy", "Curriculum Development", "School Leadership"]
+      },
+      "blogHighlights": [
+        "Analysis of classical education principles in modern context",
+        "Discussions on the role of technology in classical education",
+        "Insights into societal impacts on education"
+      ],
+      "readerLevel": "Educators, school leaders, and parents interested in classical education"
     },
     {
       "title": "Memoria Press",
       "tags": ["Classical Education", "Technology", "Lifestyle"],
-      "url": "https://www.memoriapress.com/articles/"
+      "url": "https://www.memoriapress.com/articles/",
+      "description": "Memoria Press blog covers topics related to classical education, its integration with technology, and its impact on lifestyle choices.",
+      "category": "Education",
+      "author": {
+        "name": "Memoria Press Team",
+        "position": "Classical Education Publisher and Curriculum Developer",
+        "achievements": [
+          "Developed comprehensive classical Christian curriculum",
+          "Published numerous classical education resources"
+        ],
+        "focus": [
+          "Classical Christian Education",
+          "Latin and Greek Language Instruction",
+          "Literature and History Curriculum"
+        ]
+      },
+      "blogHighlights": [
+        "Practical advice for implementing classical education at home and in schools",
+        "Reviews and discussions of classical literature",
+        "Insights into the benefits of classical education on lifestyle and character development"
+      ],
+      "readerLevel": "Homeschool parents, classical school teachers, and students of classical education"
     }
   ]
 }
