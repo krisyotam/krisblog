@@ -10,6 +10,7 @@ import personalPhilosophyData from "../../data/personal-philosophy.json"
 import coreValuesData from "../../data/core-values.json"
 import recommendedBlogsData from "../../data/recommended-blogs.json"
 import mySitesData from "../../data/my-sites.json"
+import areasOfInterestData from "../../data/areas-of-interest.json"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -61,6 +62,7 @@ export default function AboutPage() {
   const [sections, setSections] = useState<Array<{ title: string; content: string | React.ReactNode }>>([])
   const [age, setAge] = useState<string>("")
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
+  const [searchQuery, setSearchQuery] = useState<string>("")
   const [selectedBlog, setSelectedBlog] = useState<any>(null)
 
   const updateAge = useCallback(() => {
@@ -111,7 +113,40 @@ export default function AboutPage() {
           },
           { title: "My Mission", content: missionData.content },
           { title: "Experience", content: experienceData.content },
-          { title: "Personal Philosophy", content: personalPhilosophyData.content },
+          {
+            title: "Personal Philosophy",
+            content: (
+              <div className="mb-6">
+                <p className="text-lg text-muted-foreground font-light">{personalPhilosophyData.content}</p>
+              </div>
+            ),
+          },
+          {
+            title: "Areas of Interest",
+            content: (
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-secondary">
+                      <th className="px-4 py-2 text-left text-foreground">Field</th>
+                      <th className="px-4 py-2 text-left text-foreground">Subfields</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {areasOfInterestData.map((area, index) => (
+                      <tr
+                        key={index}
+                        className="border-t border-border hover:bg-secondary/50 transition-colors duration-200"
+                      >
+                        <td className="px-4 py-2 text-foreground">{area.field}</td>
+                        <td className="px-4 py-2 text-muted-foreground">{area.subfields.join(", ")}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ),
+          },
           {
             title: "Core Values",
             content: (
@@ -181,10 +216,15 @@ export default function AboutPage() {
 
   const categories = ["All", ...Array.from(new Set(recommendedBlogsData.blogs.map((blog) => blog.category)))]
 
-  const filteredBlogs =
-    selectedCategory === "All"
-      ? recommendedBlogsData.blogs
-      : recommendedBlogsData.blogs.filter((blog) => blog.category === selectedCategory)
+  const filteredBlogs = recommendedBlogsData.blogs
+    .filter((blog) => selectedCategory === "All" || blog.category === selectedCategory)
+    .filter(
+      (blog) =>
+        searchQuery === "" ||
+        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        blog.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (blog.author?.name && blog.author.name.toLowerCase().includes(searchQuery.toLowerCase())),
+    )
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
@@ -202,10 +242,30 @@ export default function AboutPage() {
         </div>
 
         <div>
-        <h3 className="text-lg font-semibold mb-4 text-foreground">Interesting People</h3>
-        <p className="text-sm text-foreground pb-4">
-          A curated list of writers, poets, artists, socialites, entrepreneurs, chairmen, politicians, academics, scientists, innovators, philosophers, educators, engineers, inventors, historians, activists, and more. People you should get to know.
-        </p>
+          <h3 className="text-lg font-semibold mb-4 text-foreground">Interesting People</h3>
+          <p className="text-sm text-foreground pb-4">
+            A curated list of writers, poets, artists, socialites, entrepreneurs, chairmen, politicians, academics,
+            scientists, innovators, philosophers, educators, engineers, inventors, historians, activists, and more.
+            People you should get to know.
+          </p>
+
+          <div className="relative mb-4">
+            <input
+              type="text"
+              placeholder="Search by name, tag, or keyword..."
+              className="w-full px-4 py-2 border border-border rounded-md bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery && (
+              <button
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                onClick={() => setSearchQuery("")}
+              >
+                ×
+              </button>
+            )}
+          </div>
 
           <div className="flex flex-wrap gap-2 mb-6">
             {categories.map((category) => (
@@ -278,9 +338,24 @@ export default function AboutPage() {
                                   <div className="mt-2">
                                     <strong>Achievements:</strong>
                                     <ul className="list-disc list-inside">
-                                      {selectedBlog?.author.achievements.map((achievement: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined, index: React.Key | null | undefined) => (
-                                        <li key={index}>{achievement}</li>
-                                      ))}
+                                      {selectedBlog?.author.achievements.map(
+                                        (
+                                          achievement:
+                                            | string
+                                            | number
+                                            | bigint
+                                            | boolean
+                                            | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+                                            | Iterable<React.ReactNode>
+                                            | React.ReactPortal
+                                            | Promise<React.AwaitedReactNode>
+                                            | null
+                                            | undefined,
+                                          index: React.Key | null | undefined,
+                                        ) => (
+                                          <li key={index}>{achievement}</li>
+                                        ),
+                                      )}
                                     </ul>
                                   </div>
                                 </CardContent>
@@ -290,9 +365,24 @@ export default function AboutPage() {
                                 <CardContent className="p-4">
                                   <h3 className="text-lg font-semibold mb-2">Blog Highlights</h3>
                                   <ul className="list-disc list-inside">
-                                    {selectedBlog?.blogHighlights.map((highlight: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined, index: React.Key | null | undefined) => (
-                                      <li key={index}>{highlight}</li>
-                                    ))}
+                                    {selectedBlog?.blogHighlights.map(
+                                      (
+                                        highlight:
+                                          | string
+                                          | number
+                                          | bigint
+                                          | boolean
+                                          | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+                                          | Iterable<React.ReactNode>
+                                          | React.ReactPortal
+                                          | Promise<React.AwaitedReactNode>
+                                          | null
+                                          | undefined,
+                                        index: React.Key | null | undefined,
+                                      ) => (
+                                        <li key={index}>{highlight}</li>
+                                      ),
+                                    )}
                                   </ul>
                                 </CardContent>
                               </Card>

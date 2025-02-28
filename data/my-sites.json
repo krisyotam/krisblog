@@ -1,39 +1,39 @@
 {
   "sites": [
     {
-      "name": "Research",
-      "purpose": "Sharing thoughts and insights on various topics",
+      "name": "Curriculum Vitae (CV)",
+      "purpose": "professional and educational background",
+      "link": "https://kriscv.vercel.app"
+    },
+    {
+      "name": "Bio Generator",
+      "purpose": "You can use this page to generate a bio about me to suit your needs.",
       "link": "https://blog.krisyotam.com"
     },
     {
       "name": "Poetry",
-      "purpose": "Sharing thoughts and insights on various topics",
-      "link": "https://blog.krisyotam.com"
+      "purpose": "A comprehensive anthology on my poetry organized by form",
+      "link": "https://krispoetry.vercel.app/"
     },
     {
-      "name": "Poetry",
-      "purpose": "Sharing thoughts and insights on various topics",
-      "link": "https://blog.krisyotam.com"
+      "name": "khr1st",
+      "purpose": "software engineering, architecture, ai, ml, ctfs",
+      "link": "https://khr1st.vercel.app"
     },
     {
-      "name": "Pure Maths Blog",
-      "purpose": "math content, research, pedgagy, and class notes",
+      "name": "Pure Maths",
+      "purpose": "math blog, research, speeches, notes",
       "link": "https://krispuremath.vercel.app"
+    },
+    {
+      "name": "Physics Blog",
+      "purpose": "physics blog, research, speeches, notes",
+      "link": "https://khr1st.vercel.app"
     },
     {
       "name": "Business Site",
       "purpose": "invesment interests, current ventures, ect.",
       "link": "https://kyotam.vercel.app"
-    },
-    {
-      "name": "Physics Blog",
-      "purpose": "Showcasing my professional work and projects",
-      "link": "https://khr1st.vercel.app"
-    },
-    {
-      "name": "Computer Science Blog",
-      "purpose": "Showcasing my professional work and projects",
-      "link": "https://khr1st.vercel.app"
     },
     {
       "name": "Reading Log",

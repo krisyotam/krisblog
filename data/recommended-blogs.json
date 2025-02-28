@@ -43,32 +43,10 @@
       "readerLevel": "Computer science students, researchers, and professionals"
     },
     {
-      "title": "The Classical Classroom",
-      "tags": ["Web Development", "Architecture", "Technology"],
-      "url": "https://k12blog.hillsdale.edu/",
-      "description": "The Classical Classroom blog discusses topics related to web development, architecture, and technology in the context of classical education.",
-      "category": "Education",
-      "author": {
-        "name": "Hillsdale College K-12 Education",
-        "position": "Educational Institution",
-        "achievements": [
-          "Recognized leader in classical education",
-          "Developed comprehensive K-12 classical curriculum"
-        ],
-        "focus": ["Classical Education Principles", "Curriculum Development", "Teacher Training"]
-      },
-      "blogHighlights": [
-        "Insights into integrating technology in classical education",
-        "Discussions on architectural principles in educational settings",
-        "Practical tips for educators in classical schools"
-      ],
-      "readerLevel": "Educators, school administrators, and parents interested in classical education"
-    },
-    {
-      "title": "Renewing Classical Education",
+      "title": "Christopher Perrin",
       "tags": ["Classical Education", "Technology", "Society"],
       "url": "https://christopherperrin.substack.com/",
-      "description": "This blog focuses on renewing classical education principles and their intersection with modern technology and society.",
+      "description": "Christopher Perrin's blog focuses on renewing classical education principles and their intersection with modern technology and society.",
       "category": "Education",
       "author": {
         "name": "Christopher Perrin",
@@ -87,30 +65,109 @@
       "readerLevel": "Educators, school leaders, and parents interested in classical education"
     },
     {
-      "title": "Memoria Press",
-      "tags": ["Classical Education", "Technology", "Lifestyle"],
-      "url": "https://www.memoriapress.com/articles/",
-      "description": "Memoria Press blog covers topics related to classical education, its integration with technology, and its impact on lifestyle choices.",
-      "category": "Education",
+      "title": "Maria Tatar",
+      "tags": ["Folklore", "Fairy Tales", "Mythology"],
+      "url": "https://example.com/maria-tatar-blog",
+      "description": "Maria Tatar explores the rich world of folklore, fairy tales, and mythology, offering insights into their cultural significance and enduring appeal.",
+      "category": "Literature",
       "author": {
-        "name": "Memoria Press Team",
-        "position": "Classical Education Publisher and Curriculum Developer",
+        "name": "Maria Tatar",
+        "position": "Professor of Folklore and Mythology at Harvard University",
         "achievements": [
-          "Developed comprehensive classical Christian curriculum",
-          "Published numerous classical education resources"
+          "Distinguished research on fairy tales and folklore",
+          "Author of numerous books on folklore and children's literature"
         ],
-        "focus": [
-          "Classical Christian Education",
-          "Latin and Greek Language Instruction",
-          "Literature and History Curriculum"
-        ]
+        "researchAreas": ["Fairy Tales", "Folklore", "Children's Literature", "Cultural Studies"]
       },
       "blogHighlights": [
-        "Practical advice for implementing classical education at home and in schools",
-        "Reviews and discussions of classical literature",
-        "Insights into the benefits of classical education on lifestyle and character development"
+        "Analysis of classic and contemporary fairy tales",
+        "Exploration of folklore's role in modern society",
+        "Discussions on the psychological aspects of myths and legends"
       ],
-      "readerLevel": "Homeschool parents, classical school teachers, and students of classical education"
+      "readerLevel": "Literature enthusiasts, folklorists, and students of cultural studies"
+    },
+    {
+      "title": "Sara Taglialagamba",
+      "tags": ["Art History", "Renaissance", "Leonardo da Vinci"],
+      "url": "https://example.com/sara-taglialagamba-blog",
+      "description": "Sara Taglialagamba delves into the life, works, and legacy of Leonardo da Vinci, offering expert insights into Renaissance art and science.",
+      "category": "Art History",
+      "author": {
+        "name": "Sara Taglialagamba",
+        "position": "Scholar at the Leonardo da Vinci Museum in Florence, Italy",
+        "achievements": ["Expert on Leonardo da Vinci", "Curator of numerous exhibitions on Renaissance art"],
+        "researchAreas": ["Renaissance Art", "Leonardo da Vinci", "Art and Science in the Renaissance"]
+      },
+      "blogHighlights": [
+        "In-depth analysis of da Vinci's artworks and inventions",
+        "Exploration of Renaissance art techniques and innovations",
+        "Discussions on the intersection of art and science in da Vinci's work"
+      ],
+      "readerLevel": "Art history enthusiasts, Renaissance scholars, and students of interdisciplinary studies"
+    },
+    {
+      "title": "Irving Finkel",
+      "tags": ["Assyriology", "Ancient Languages", "Archaeology"],
+      "url": "https://example.com/irving-finkel-blog",
+      "description": "Irving Finkel unravels the mysteries of ancient Mesopotamian languages and artifacts, offering fascinating insights into one of the world's oldest civilizations.",
+      "category": "Ancient History",
+      "author": {
+        "name": "Irving Finkel",
+        "position": "Curator at the British Museum",
+        "achievements": [
+          "Expert in ancient Mesopotamian languages",
+          "Author of books on cuneiform and Mesopotamian culture"
+        ],
+        "researchAreas": ["Assyriology", "Cuneiform", "Ancient Near Eastern History"]
+      },
+      "blogHighlights": [
+        "Decipherment of ancient texts and inscriptions",
+        "Exploration of Mesopotamian myths and legends",
+        "Insights into the daily life of ancient Mesopotamians"
+      ],
+      "readerLevel": "History enthusiasts, archaeologists, and students of ancient civilizations"
+    },
+    {
+      "title": "Jim Al-Khalili",
+      "tags": ["Physics", "Quantum Mechanics", "Science Communication"],
+      "url": "https://example.com/jim-al-khalili-blog",
+      "description": "Jim Al-Khalili explores the fascinating world of theoretical physics, quantum mechanics, and the latest developments in scientific research.",
+      "category": "Physics",
+      "author": {
+        "name": "Jim Al-Khalili",
+        "position": "Distinguished Emeritus Professor of Physics at the University of Surrey",
+        "achievements": [
+          "Renowned physicist and science communicator",
+          "Author of popular science books",
+          "Presenter of science documentaries"
+        ],
+        "researchAreas": ["Nuclear Physics", "Quantum Mechanics", "Science Communication"]
+      },
+      "blogHighlights": [
+        "Explanations of complex physics concepts for a general audience",
+        "Updates on cutting-edge research in quantum physics",
+        "Reflections on the role of science in society"
+      ],
+      "readerLevel": "Science enthusiasts, students, and anyone interested in modern physics"
+    },
+    {
+      "title": "Laura Ashe",
+      "tags": ["Medieval Literature", "History", "Culture"],
+      "url": "https://example.com/laura-ashe-blog",
+      "description": "Laura Ashe offers insightful perspectives on medieval literature, history, and culture, focusing on England and its neighbors from the 10th to the 17th century.",
+      "category": "Medieval Studies",
+      "author": {
+        "name": "Laura Ashe",
+        "position": "Professor of English Literature at the University of Oxford",
+        "achievements": ["Expert in medieval literature and history", "Author of books on medieval English culture"],
+        "researchAreas": ["Medieval Literature", "Medieval History", "Cultural Studies"]
+      },
+      "blogHighlights": [
+        "Analysis of medieval texts and their historical context",
+        "Explorations of medieval society and culture",
+        "Discussions on the relevance of medieval studies today"
+      ],
+      "readerLevel": "Literature students, historians, and medieval enthusiasts"
     }
   ]
 }

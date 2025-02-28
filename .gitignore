@@ -8,3 +8,7 @@
 
 # Node Modules
 node_modules
+
+# Nextjs
+.next/
+.next
