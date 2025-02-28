@@ -1,7 +1,0 @@
-{
-  "/wishlist/page": "app/wishlist/page.js",
-  "/research/page": "app/research/page.js",
-  "/donate/page": "app/donate/page.js",
-  "/ocs/page": "app/ocs/page.js",
-  "/about/page": "app/about/page.js"
-}
