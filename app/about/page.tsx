@@ -200,23 +200,6 @@ export default function AboutPage() {
             />
           ))}
         </div>
-        <div className="flex justify-center my-6 space-x-4">
-  <Link href="/wishlist" passHref>
-    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-      View My Wishlist
-    </Button>
-  </Link>
-  <Link href="/research" passHref>
-    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-      View My Research
-    </Button>
-  </Link>
-  <Link href="/explore" passHref>
-    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200">
-      Explore More
-    </Button>
-  </Link>
-</div>
 
         <div>
         <h3 className="text-lg font-semibold mb-4 text-foreground">Interesting People</h3>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Command } from "cmdk"
 import { useRouter } from "next/navigation"
-import { Home, User, BookOpen, FileText, Sun, Moon, List, Quote, Heart, Presentation, Users } from "lucide-react"
+import { Home, User, BookOpen, FileText, Sun, Moon, List, Quote, Heart, Presentation, Users, School, Gift} from "lucide-react"
 import { SnowEffect } from "./snow-effect"
 import { useTheme } from "next-themes"
 
@@ -16,8 +16,10 @@ const menuItems = [
   { icon: Users, label: "OCs", path: "/ocs" },
   { icon: Presentation, label: "Keynotes", path: "/keynotes" },
   { icon: FileText, label: "Speeches", path: "/speeches" },
-  { icon: User, label: "About", path: "/about" },
+  { icon: School, label: "Research", path: "/research" },
+  { icon: Gift, label: "Wishlist", path: "/wishlist" },
   { icon: Heart, label: "Donate", path: "/donate" },
+  { icon: User, label: "About", path: "/about" },
 ]
 
 export function CommandMenu() {
@@ -74,7 +76,12 @@ export function CommandMenu() {
         open={open}
         onOpenChange={setOpen}
         label="Global Command Menu"
-        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[370px] max-h-[85vh] bg-background text-foreground rounded-xl shadow-2xl border border-border z-50 overflow-hidden"
+        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[370px] max-h-[50vh] bg-background text-foreground rounded-xl shadow-2xl border border-border z-50 overflow-y-auto no-scrollbar"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          WebkitOverflowScrolling: "touch",
+        }}
       >
         <div className="flex items-center justify-between px-4 py-2 border-border text-sm text-muted-foreground">
           <span>
@@ -92,9 +99,9 @@ export function CommandMenu() {
 
         <Command.List className="py-2 px-2">
           <Command.Group heading="Pages" className="px-2 py-1.5 text-xs text-gray-400 dark:text-gray-500 uppercase">
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <Command.Item
-                key={item.path}
+                key={`${item.path}-${index}`}
                 onSelect={() => runCommand(() => router.push(item.path))}
                 className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-sm text-gray-600 dark:text-gray-300 hover:bg-accent hover:text-accent-foreground cursor-pointer"
               >
