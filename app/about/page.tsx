@@ -1,5 +1,6 @@
 "use client"
 
+
 import type React from "react"
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
@@ -16,7 +17,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
 
+import { WordOfTheDay } from "@/components/WordOfTheDay"
+import { QuoteOfTheDay } from "@/components/QuoteOfTheDay"
+import { CurrentlyListening } from "@/components/CurrentlyListening"
+import { CurrentlyReading } from "@/components/CurrentlyReading"
+
+
 export const dynamic = "force-dynamic"
+
 
 interface AccordionItemProps {
   title: string
@@ -24,6 +32,7 @@ interface AccordionItemProps {
   isOpen: boolean
   onToggle: () => void
 }
+
 
 function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps) {
   return (
@@ -57,6 +66,7 @@ function AccordionItem({ title, content, isOpen, onToggle }: AccordionItemProps)
   )
 }
 
+
 export default function AboutPage() {
   const [openSections, setOpenSections] = useState<number[]>([0])
   const [sections, setSections] = useState<Array<{ title: string; content: string | React.ReactNode }>>([])
@@ -64,6 +74,7 @@ export default function AboutPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [selectedBlog, setSelectedBlog] = useState<any>(null)
+
 
   const updateAge = useCallback(() => {
     const birthDate = new Date("2004-08-05T18:31:00")
@@ -74,10 +85,12 @@ export default function AboutPage() {
     return `I was born on August 5, 2004, at 6:31 PM. As of ${now.toLocaleString()}, I am ${ageInYears} years old, which is approximately ${ageInSeconds.toLocaleString()} seconds since my birth.`
   }, [])
 
+
   useEffect(() => {
     const timer = setInterval(() => setAge(updateAge()), 1000)
     return () => clearInterval(timer)
   }, [updateAge])
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,27 +100,70 @@ export default function AboutPage() {
             title: "About Me",
             content: (
               <>
-                <div>{aboutMeData.content}</div>
-                <h3 className="text-lg mt-4 mb-2">Name Breakdown</h3>
-                <ul className="list-disc list-inside mb-4">
-                  <li>
-                    <strong>Kris</strong> (KRISS): Follower of Christ
-                  </li>
-                  <li>
-                    <strong>Lael</strong> (LAY-el): Belonging to God
-                  </li>
-                  <li>
-                    <strong>Uri</strong> (OO-ree): Of Light
-                  </li>
-                  <li>
-                    <strong>Mayim</strong> (mah-YEEM): Water
-                  </li>
-                  <li>
-                    <strong>Yotam</strong> (yo-TAHM): God is Perfect
-                  </li>
-                </ul>
-                <h3 className="text-lg mt-4 mb-2">Age</h3>
-                <p>{age}</p>
+                <div className="mb-6">{aboutMeData.content}</div>
+                
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium mb-3">Name Breakdown</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li>
+                      <strong>Kris</strong> (KRISS): Follower of Christ
+                    </li>
+                    <li>
+                      <strong>Lael</strong> (LAY-el): Belonging to God
+                    </li>
+                    <li>
+                      <strong>Uri</strong> (OO-ree): Of Light
+                    </li>
+                    <li>
+                      <strong>Mayim</strong> (mah-YEEM): Water
+                    </li>
+                    <li>
+                      <strong>Yotam</strong> (yo-TAHM): God is Perfect
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="mb-6">
+                  <h3 className="text-lg font-medium mb-3">Age</h3>
+                  <p className="text-muted-foreground">{age}</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">listening</div>
+                    <CurrentlyListening />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">reading</div>
+                    <CurrentlyReading />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">word of the day</div>
+                    <WordOfTheDay />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500 mb-1">quote of the day</div>
+                    <QuoteOfTheDay />
+                  </div>
+                </div>
+                
+                <div className="flex justify-center space-x-4 mt-6">
+                  <Link href="/cv" passHref>
+                    <Button variant="outline" className="text-sm px-4 py-2 transition-colors hover:bg-primary hover:text-primary-foreground">
+                      Curriculum Vitae
+                    </Button>
+                  </Link>
+                  <Link href="/profile" passHref>
+                    <Button variant="outline" className="text-sm px-4 py-2 transition-colors hover:bg-primary hover:text-primary-foreground">
+                      Profile
+                    </Button>
+                  </Link>
+                  <a href="https://krisbiogenerator.vercel.app" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="text-sm px-4 py-2 transition-colors hover:bg-primary hover:text-primary-foreground">
+                      Bio Generator
+                    </Button>
+                  </a>
+                </div>
               </>
             ),
           },
@@ -207,14 +263,18 @@ export default function AboutPage() {
       }
     }
 
+
     fetchData()
   }, [age])
+
 
   const toggleSection = (index: number) => {
     setOpenSections((current) => (current.includes(index) ? current.filter((i) => i !== index) : [...current, index]))
   }
 
+
   const categories = ["All", ...Array.from(new Set(recommendedBlogsData.blogs.map((blog) => blog.category)))]
+
 
   const filteredBlogs = recommendedBlogsData.blogs
     .filter((blog) => selectedCategory === "All" || blog.category === selectedCategory)
@@ -225,6 +285,7 @@ export default function AboutPage() {
         blog.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
         (blog.author?.name && blog.author.name.toLowerCase().includes(searchQuery.toLowerCase())),
     )
+
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
@@ -241,6 +302,7 @@ export default function AboutPage() {
           ))}
         </div>
 
+
         <div>
           <h3 className="text-lg font-semibold mb-4 text-foreground">Interesting People</h3>
           <p className="text-sm text-foreground pb-4">
@@ -248,6 +310,7 @@ export default function AboutPage() {
             scientists, innovators, philosophers, educators, engineers, inventors, historians, activists, and more.
             People you should get to know.
           </p>
+
 
           <div className="relative mb-4">
             <input
@@ -266,6 +329,7 @@ export default function AboutPage() {
               </button>
             )}
           </div>
+
 
           <div className="flex flex-wrap gap-2 mb-6">
             {categories.map((category) => (
@@ -326,6 +390,7 @@ export default function AboutPage() {
                                 </CardContent>
                               </Card>
 
+
                               <Card>
                                 <CardContent className="p-4">
                                   <h3 className="text-lg font-semibold mb-2">Author Details</h3>
@@ -361,6 +426,7 @@ export default function AboutPage() {
                                 </CardContent>
                               </Card>
 
+
                               <Card>
                                 <CardContent className="p-4">
                                   <h3 className="text-lg font-semibold mb-2">Blog Highlights</h3>
@@ -387,12 +453,14 @@ export default function AboutPage() {
                                 </CardContent>
                               </Card>
 
+
                               <Card>
                                 <CardContent className="p-4">
                                   <h3 className="text-lg font-semibold mb-2">Reader Level</h3>
                                   <p>{selectedBlog?.readerLevel}</p>
                                 </CardContent>
                               </Card>
+
 
                               <div className="flex justify-center">
                                 <Button asChild>

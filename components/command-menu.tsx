@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Command } from "cmdk"
 import { useRouter } from "next/navigation"
-import { Home, User, BookOpen, FileText, Sun, Moon, List, Quote, Heart, Presentation, Users, School, Gift, Mail} from "lucide-react"
+import { Home, User, BookOpen, FileText, Sun, Moon, List, Quote, Heart, Presentation, Users, School, Gift, Mail, Scroll, Earth} from "lucide-react"
 import { SnowEffect } from "./snow-effect"
 import { useTheme } from "next-themes"
 
@@ -16,10 +16,12 @@ const menuItems = [
   { icon: Users, label: "OCs", path: "/ocs" },
   { icon: Presentation, label: "Keynotes", path: "/keynotes" },
   { icon: FileText, label: "Speeches", path: "/speeches" },
+  { icon: Scroll, label: "Theories", path: "/theories" },
   { icon: School, label: "Research", path: "/research" },
   { icon: Gift, label: "Wishlist", path: "/wishlist" },
   { icon: Heart, label: "Donate", path: "/donate" },
   { icon: Mail, label: "Contact", path: "/contact" },
+  { icon: Earth, label: "GLOBE", path: "/globe" },
   { icon: User, label: "About", path: "/about" },
 ]
 

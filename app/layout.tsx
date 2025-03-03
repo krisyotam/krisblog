@@ -5,8 +5,8 @@ import { ThemeProvider } from "../components/theme-provider"
 import type React from "react" // Added import for React
 
 export const metadata: Metadata = {
-  title: "Kris Yotam - Personal Blog",
-  description: "Explore insights on minimalism, technology, and personal growth with Kris Yotam's blog.",
+  title: "Kris Yotam",
+  description: "Ideas, works, and reflections of a contemporary polymath",
 }
 
 export default function RootLayout({
